@@ -54,7 +54,13 @@ function play() {
   if (direction == "up") snakeY -= box;
   if (direction == "down") snakeY += box;
 
-  snake.pop();
+  if(snakeX != snakeFood.x || snakeY != snakeFood.y){
+      snake.pop();
+  }
+  else{
+    snakeFood.x = Math.floor(Math.random() * 15 + 1) * box,
+    snakeFood.y = Math.floor(Math.random() * 15 + 1) * box
+    }
 
   let newHead = {
     x: snakeX,
