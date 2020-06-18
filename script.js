@@ -7,6 +7,10 @@ snake[0] = {
   y: 8 * box,
 };
 let direction = "right";
+let snakeFood = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 function criarBG() {
   context.fillStyle = "lightblue";
@@ -18,6 +22,10 @@ function criandoCobrinha() {
     context.fillRect(snake[i].x, snake[i].y, box, box);
   }
 }
+function food() {
+  context.fillStyle = "red";
+  context.fillRect(snakeFood.x, snakeFood.y, box, box);
+}
 document.addEventListener("keydown", update);
 
 function update(event) {
@@ -28,14 +36,15 @@ function update(event) {
 }
 
 function play() {
-   
-  if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-  if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
-  if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-  if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+  //loop da cobrinha aparecer do outro lado da tela
+  if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+  if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+  if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+  if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
 
   criarBG();
   criandoCobrinha();
+  food();
 
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
